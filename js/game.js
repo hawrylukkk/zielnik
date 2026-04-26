@@ -248,7 +248,7 @@
 
     // Check STEMPLE (returns newly earned)
     const newStamps = window.ZielnikStemple
-      ? ZielnikStemple.check({
+      ? window.ZielnikStemple.check({
           flowers,
           unlocked: ZielnikStorage.getUnlocked(),
           round: {

@@ -1,5 +1,5 @@
 /* Service worker — Zielnik (offline-first cache) */
-const VERSION = "zielnik-v6";
+const VERSION = "zielnik-v7";
 const REQUIRED_ASSETS = [
   "./",
   "index.html",
@@ -23,6 +23,12 @@ const REQUIRED_ASSETS = [
 const OPTIONAL_ASSETS = [
   "images/icon-192.png",
   "images/icon-512.png",
+  "images/druid.png",
+  "images/druid-sad.png",
+  "images/druid-demonic.png",
+  "images/druid-drunk.png",
+  "images/druid-angry.png",
+  "audio/burp.mp3",
 ];
 
 function cacheOptionalAssets(cache) {

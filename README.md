@@ -11,7 +11,7 @@ Piękna gra pamięciowa w stylu klasycznego pergaminowego zielnika. Łącz w par
 - 🔊 **Dźwięki WOW** — combo-system: każdy kolejny nowo odblokowany kwiat w rundzie odpala mocniejszą fanfarę.
 - 🪶 **Klasyczna estetyka** — pergamin, sepia, serify (Cormorant Garamond / EB Garamond).
 - 🕊️ **Animacja przelotu** — po wygranej każda nowo odblokowana karta przelatuje do ikony zielnika w rogu.
-- 🏅 **Pieczątki / osiągnięcia** — 12 achievementów (kolekcje, mistrz pamięci, błyskawica, combo…).
+- 🏅 **STEMPLE** — 25 osiągnięć za odkrycia, szybkie pary, precyzję i kompletowanie zestawów.
 - 📱 **PWA / offline** — działa po dodaniu do ekranu głównego, cache obrazów i audio przez service worker.
 
 ## 🚀 Uruchomienie

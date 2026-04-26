@@ -162,7 +162,7 @@
 
   // Re-check achievements when entering herbarium (covers collection-based ones)
   if (window.ZielnikStemple) {
-    ZielnikStemple.check({ flowers, unlocked: ZielnikStorage.getUnlocked(), round: null });
+    window.ZielnikStemple.check({ flowers, unlocked: ZielnikStorage.getUnlocked(), round: null });
   }
 
   // STEMPLE dialog
@@ -179,8 +179,8 @@
 
   function renderStamps() {
     if (!window.ZielnikStemple) return;
-    const earned = ZielnikStemple.getEarned();
-    const all = ZielnikStemple.getAll();
+    const earned = window.ZielnikStemple.getEarned();
+    const all = window.ZielnikStemple.getAll();
     const grouped = all.reduce((acc, stamp) => {
       const group = stamp.group || "Inne";
       if (!acc[group]) acc[group] = [];
@@ -210,7 +210,7 @@
 
   function syncStampsButton() {
     if (!window.ZielnikStemple) return;
-    const p = ZielnikStemple.getProgress();
+    const p = window.ZielnikStemple.getProgress();
     openStamps.textContent = `🏅 STEMPLE ${p.earned}/${p.total}`;
   }
 
