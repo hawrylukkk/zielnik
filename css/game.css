@@ -1,0 +1,171 @@
+/* === Memo board === */
+.board-wrap {
+  padding: 32px 24px 56px;
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px;
+  width: 100%;
+  max-width: 1320px;
+  perspective: 1400px;
+}
+@media (max-width: 1100px) {
+  .board { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 720px) {
+  .board { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+}
+@media (max-width: 460px) {
+  .board { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Card — horizontal */
+.card {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+  border-radius: 10px;
+}
+.card.is-flipped { transform: rotateY(180deg); }
+.card.is-matched { cursor: default; }
+.card.is-matched .card__face--front {
+  box-shadow:
+    0 0 0 2px var(--gold-soft),
+    0 10px 28px rgba(120, 90, 40, 0.35);
+}
+.card.is-locked { pointer-events: none; }
+
+.card__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid rgba(90, 70, 40, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 8px 22px rgba(58, 42, 26, 0.22);
+  background: var(--paper);
+}
+
+.card__face--back {
+  background-image: url("../images/back.png");
+  background-size: cover;
+  background-position: center;
+  background-color: #6b7a4a;
+}
+.card__face--back::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(255, 245, 220, 0.35);
+  border-radius: 7px;
+  pointer-events: none;
+}
+
+.card__face--front {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+}
+.card__image {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--paper-2);
+}
+.card__name {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 6px 10px;
+  font-family: var(--serif);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  text-align: center;
+  background: linear-gradient(180deg, rgba(244, 234, 213, 0) 0%, rgba(244, 234, 213, 0.92) 60%, rgba(236, 223, 193, 0.96) 100%);
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  border-top: 1px solid rgba(90, 70, 40, 0.18);
+}
+
+.card.is-new-unlock .card__face--front::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 50%, rgba(212, 168, 74, 0.65), rgba(212, 168, 74, 0) 70%);
+  animation: bloom 1.6s ease-out;
+  pointer-events: none;
+  z-index: 2;
+}
+@keyframes bloom {
+  0%   { transform: scale(0.6); opacity: 0; }
+  35%  { opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Herbarium icon target in topbar */
+.herb-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 250, 232, 0.6);
+  border: 1px solid rgba(90, 70, 40, 0.35);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.herb-icon:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.herb-icon__book { font-size: 1.3rem; line-height: 1; }
+.herb-icon__count {
+  position: absolute;
+  bottom: -6px; right: -6px;
+  background: var(--moss);
+  color: #f4ead5;
+  font-family: var(--serif);
+  font-size: 0.78rem;
+  border-radius: 999px;
+  padding: 1px 6px;
+  border: 1px solid rgba(0,0,0,0.2);
+  min-width: 18px;
+  text-align: center;
+}
+.herb-icon.is-pulsing { animation: herbPulse 0.6s ease; }
+@keyframes herbPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.25); box-shadow: 0 0 0 8px rgba(184,134,11,0.25); }
+}
+
+/* Flying card clone — animated via JS-set CSS vars */
+.fly-card {
+  position: fixed;
+  z-index: 200;
+  border-radius: 10px;
+  border: 1px solid rgba(90,70,40,0.45);
+  box-shadow: var(--shadow-lg);
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  transition: transform 1.1s cubic-bezier(.55,.05,.4,1.1), opacity 1.1s ease, width 1.1s ease, height 1.1s ease;
+}
+.fly-card.is-flying {
+  opacity: 0;
+  width: 40px !important;
+  height: 40px !important;
+  transform: translate(var(--fly-dx, 0), var(--fly-dy, 0)) rotate(var(--fly-rot, 360deg)) scale(0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fly-card { transition: none; }
+  .card { transition: none; }
+}

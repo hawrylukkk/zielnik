@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zielnik — Memo Botaniczne</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#5a6b3b" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png" />
+  <meta name="description" content="Pergaminowa gra pamięciowa: łącz pary kwiatów i odkrywaj je w zielniku — encyklopedii w stylu Pokédexa." />
+</head>
+<body class="page-menu">
+  <div class="parchment-bg"></div>
+
+  <main class="menu">
+    <header class="menu__header">
+      <div class="ornament">✦ ❦ ✦</div>
+      <h1 class="menu__title">Zielnik</h1>
+      <p class="menu__subtitle"><em>Herbarium Memoriae</em></p>
+      <div class="ornament">— gra pamięciowa botaniczna —</div>
+    </header>
+
+    <section class="menu__actions">
+      <a class="btn btn--primary" href="game.html">
+        <span class="btn__title">Rozpocznij grę</span>
+        <span class="btn__sub">Łącz w pary, odkrywaj kwiaty</span>
+      </a>
+      <a class="btn" href="herbarium.html">
+        <span class="btn__title">Otwórz Zielnik</span>
+        <span class="btn__sub">Encyklopedia odkrytych kwiatów</span>
+      </a>
+    </section>
+
+    <section class="menu__progress" id="progressPanel">
+      <!-- progress filled by JS -->
+    </section>
+
+    <footer class="menu__footer">
+      <button id="muteToggle" class="link-btn" type="button" aria-pressed="false">🔊 Dźwięk: włączony</button>
+      <span class="dot">·</span>
+      <button id="resetProgress" class="link-btn link-btn--danger" type="button">Zresetuj postęp</button>
+    </footer>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

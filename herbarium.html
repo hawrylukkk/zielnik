@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zielnik — Encyklopedia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/herbarium.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#5a6b3b" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png" />
+</head>
+<body class="page-herbarium">
+  <div class="parchment-bg"></div>
+
+  <header class="topbar">
+    <a class="topbar__back" href="index.html" aria-label="Powrót do menu">← Menu</a>
+    <h1 class="topbar__title">Zielnik</h1>
+    <nav class="topbar__nav">
+      <span class="stat" aria-label="Postęp">❀ <span id="progressLabel">0 / 94</span></span>
+      <a class="link-btn" href="game.html">Graj →</a>
+    </nav>
+  </header>
+
+  <main class="herbarium">
+    <aside class="herbarium__sidebar" aria-label="Lista kwiatów">
+      <div class="filters">
+        <label class="filters__search">
+          <span class="visually-hidden">Szukaj</span>
+          <input type="search" id="searchInput" placeholder="Szukaj…" autocomplete="off" />
+        </label>
+        <div class="filters__row">
+          <select id="filterCategory" aria-label="Kategoria">
+            <option value="">Wszystkie kategorie</option>
+          </select>
+          <select id="filterLifecycle" aria-label="Cykl życia">
+            <option value="">Wszystkie cykle</option>
+          </select>
+        </div>
+        <label class="filters__check">
+          <input type="checkbox" id="filterUnlocked" /> Tylko odblokowane
+        </label>
+      </div>
+      <ul id="flowerList" class="flower-list" role="listbox"></ul>
+      <button id="openStamps" class="link-btn stamps-trigger" type="button">🏅 Zobacz pieczątki</button>
+    </aside>
+
+    <section id="detail" class="herbarium__detail" aria-live="polite">
+      <div class="detail__placeholder">
+        <div class="ornament">✦ ❦ ✦</div>
+        <p>Wybierz kwiat z listy,<br />aby otworzyć kartę zielnika.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="stampsDialog" class="dialog" hidden>
+    <div class="dialog__panel dialog__panel--wide">
+      <div class="ornament">✦ ❦ ✦</div>
+      <h2>Pieczątki w zielniku</h2>
+      <p class="dialog__lead">Zdobywaj je grając w memo i kompletując kolekcje.</p>
+      <div id="stampsGrid" class="stamps-grid"></div>
+      <div class="dialog__actions">
+        <button class="btn" id="closeStamps" type="button">Zamknij</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/herbarium.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

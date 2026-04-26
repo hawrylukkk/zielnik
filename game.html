@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gra — Zielnik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/game.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#5a6b3b" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png" />
+</head>
+<body class="page-game">
+  <div class="parchment-bg"></div>
+
+  <header class="topbar">
+    <a class="topbar__back" href="index.html" aria-label="Powrót do menu">← Menu</a>
+    <h1 class="topbar__title">Memo Botaniczne</h1>
+    <nav class="topbar__nav">
+      <span class="stat" aria-label="Czas">⧖ <span id="statTime">00:00</span></span>
+      <span class="stat" aria-label="Ruchy">↻ <span id="statMoves">0</span></span>
+      <span class="stat" aria-label="Pary">❀ <span id="statPairs">0/12</span></span>
+      <a id="herbariumTarget" class="herb-icon" href="herbarium.html" title="Zielnik" aria-label="Otwórz zielnik">
+        <span class="herb-icon__book">📕</span>
+        <span class="herb-icon__count" id="herbCount">0</span>
+      </a>
+      <button id="muteToggle" class="link-btn" type="button" aria-pressed="false">🔊</button>
+    </nav>
+  </header>
+
+  <main class="board-wrap">
+    <div id="board" class="board" aria-label="Plansza memo"></div>
+  </main>
+
+  <div id="toastStack" class="toast-stack" aria-live="polite"></div>
+
+  <div id="winDialog" class="dialog" hidden>
+    <div class="dialog__panel">
+      <div class="ornament">✦ ❦ ✦</div>
+      <h2>Runda zakończona</h2>
+      <p class="dialog__lead" id="winLead">Wspaniała pamięć botaniczna!</p>
+      <ul class="dialog__stats">
+        <li>Czas: <strong id="winTime">00:00</strong></li>
+        <li>Ruchy: <strong id="winMoves">0</strong></li>
+        <li>Nowo odkryte: <strong id="winNew">0</strong></li>
+      </ul>
+      <div id="winAchievements" class="win-achievements" hidden></div>
+      <div class="dialog__actions">
+        <button class="btn btn--primary" id="playAgain">Zagraj ponownie</button>
+        <a class="btn" href="herbarium.html">Otwórz Zielnik</a>
+        <a class="btn btn--ghost" href="index.html">Menu</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/achievements.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

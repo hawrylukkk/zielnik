@@ -1,0 +1,16 @@
+{
+  "name": "Zielnik — Memo Botaniczne",
+  "short_name": "Zielnik",
+  "description": "Pergaminowa gra pamięciowa: łącz pary kwiatów i odkrywaj je w zielniku.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4ead5",
+  "theme_color": "#5a6b3b",
+  "lang": "pl",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
