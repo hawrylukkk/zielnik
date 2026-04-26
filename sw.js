@@ -1,5 +1,5 @@
 /* Service worker — Zielnik (offline-first cache) */
-const VERSION = "zielnik-v7";
+const VERSION = "zielnik-v10";
 const REQUIRED_ASSETS = [
   "./",
   "index.html",

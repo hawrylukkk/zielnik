@@ -384,13 +384,14 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
 
 .tutorial-paszczak {
   position: absolute;
-  bottom: 24px;
-  left: 24px;
-  width: 180px;
-  height: 180px;
+  top: clamp(8px, 2vh, 24px);
+  left: 50%;
+  translate: -50% 0;
+  width: min(78vw, 620px);
+  height: min(52vh, 520px);
   pointer-events: none;
   animation: paszczakIn 0.6s cubic-bezier(.2,.8,.2,1) both;
-  filter: drop-shadow(0 8px 16px rgba(40,28,14,0.4));
+  filter: drop-shadow(0 16px 22px rgba(40,28,14,0.45));
 }
 @keyframes paszczakIn {
   from { transform: translateY(40px) scale(0.85); opacity: 0; }
@@ -398,20 +399,19 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
 }
 .tutorial-paszczak__img {
   width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: 14px;
-  border: 4px solid #f4ead5;
-  background: #f4ead5;
-  box-shadow: 0 6px 18px rgba(58,42,26,0.35);
+  object-fit: contain;
+  object-position: center bottom;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
   animation: paszczakBob 4s ease-in-out infinite;
 }
 .tutorial-root--demonic .tutorial-paszczak__img {
-  border-color: #8a1e18;
-  box-shadow: 0 0 22px rgba(138, 30, 24, 0.72), 0 8px 20px rgba(40,28,14,0.5);
+  filter: drop-shadow(0 0 18px rgba(138, 30, 24, 0.72));
 }
 .tutorial-root--sad .tutorial-paszczak__img {
-  filter: saturate(0.75) drop-shadow(0 8px 16px rgba(40,28,14,0.4));
+  filter: saturate(0.75);
 }
 @keyframes paszczakBob {
   0%, 100% { transform: translateY(0) rotate(-2deg); }
@@ -420,9 +420,11 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
 
 .tutorial-bubble {
   position: absolute;
-  bottom: 56px;
-  left: 220px;
-  max-width: 560px;
+  left: 50%;
+  bottom: clamp(14px, 3vh, 30px);
+  translate: -50% 0;
+  width: min(760px, calc(100vw - 32px));
+  max-width: none;
   background: linear-gradient(180deg, #faf1d9, #ecdcb1);
   border: 1px solid rgba(90, 70, 40, 0.5);
   border-radius: 14px;
@@ -432,14 +434,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
   animation: bubbleIn 0.5s cubic-bezier(.2,.8,.2,1) both;
 }
 .tutorial-bubble::before {
-  content: "";
-  position: absolute;
-  left: -14px;
-  bottom: 36px;
-  width: 0; height: 0;
-  border: 14px solid transparent;
-  border-right-color: #f5e9c8;
-  filter: drop-shadow(-1px 0 0 rgba(90, 70, 40, 0.5));
+  display: none;
 }
 @keyframes bubbleIn {
   from { transform: translateY(10px) scale(0.96); opacity: 0; }
@@ -450,7 +445,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
   line-height: 1.5;
   color: var(--ink);
   margin-bottom: 12px;
-  max-height: min(44vh, 390px);
+  max-height: min(34vh, 300px);
   overflow-y: auto;
   padding-right: 4px;
 }
@@ -511,10 +506,17 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
 .tutorial-skip:hover { color: var(--terracotta); }
 
 @media (max-width: 600px) {
-  .tutorial-paszczak { width: 118px; height: 118px; bottom: 12px; left: 12px; }
-  .tutorial-bubble { left: 12px; right: 12px; bottom: 146px; max-width: none; }
-  .tutorial-bubble::before { display: none; }
-  .tutorial-bubble__text { max-height: 42vh; }
+  .tutorial-paszczak {
+    top: 8px;
+    width: min(96vw, 430px);
+    height: 44vh;
+  }
+  .tutorial-bubble {
+    width: calc(100vw - 20px);
+    bottom: 10px;
+    padding: 16px 16px 12px;
+  }
+  .tutorial-bubble__text { max-height: 35vh; }
 }
 
 @media (prefers-reduced-motion: reduce) {
