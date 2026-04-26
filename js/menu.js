@@ -29,14 +29,24 @@
   }
   syncMute();
   muteBtn.addEventListener("click", () => {
-    ZielnikStorage.setMuted(!ZielnikStorage.getMuted());
+    ZielnikAudio.setMuted(!ZielnikStorage.getMuted());
     syncMute();
   });
+
+  // Replay tutorial
+  const replayBtn = document.getElementById("replayTutorial");
+  if (replayBtn) {
+    replayBtn.addEventListener("click", () => {
+      if (window.ZielnikTutorial) ZielnikTutorial.replay();
+    });
+  }
 
   // Reset
   document.getElementById("resetProgress").addEventListener("click", () => {
     if (confirm("Na pewno zresetować cały postęp? Tej operacji nie da się cofnąć.")) {
       ZielnikStorage.resetAll();
+      localStorage.removeItem("zielnik.tutorial.skip.v1");
+      localStorage.removeItem("zielnik.tutorial.done.v1");
       location.reload();
     }
   });

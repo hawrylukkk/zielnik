@@ -1,3 +1,106 @@
+/* === Book cover (intro screen) === */
+.book-cover {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  perspective: 1800px;
+  background: rgba(40, 28, 14, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.book-cover[hidden] { display: none; }
+
+.book-cover__half {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50%;
+  background: linear-gradient(135deg, #6b5530 0%, #4a3820 60%, #2e2210 100%);
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.5);
+  transition: transform 1.1s cubic-bezier(.6,.05,.4,1);
+  transform-style: preserve-3d;
+  z-index: 2;
+}
+.book-cover__half--left {
+  left: 0;
+  transform-origin: left center;
+  border-right: 2px solid #2a1d0c;
+}
+.book-cover__half--right {
+  right: 0;
+  transform-origin: right center;
+  border-left: 2px solid #2a1d0c;
+}
+
+.book-cover__inner {
+  position: absolute;
+  inset: 18px;
+  border: 2px solid rgba(212, 168, 74, 0.5);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at center, rgba(212, 168, 74, 0.08), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.06) 0 2px, transparent 2px 6px);
+}
+.book-cover__inner .ornament {
+  color: rgba(212, 168, 74, 0.7);
+  font-size: 1.3rem;
+}
+
+.book-cover__center {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 32px 36px;
+  background: linear-gradient(180deg, #faf1d9, #ecdcb1);
+  border: 1px solid rgba(90, 70, 40, 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 460px;
+  width: calc(100% - 48px);
+  animation: coverPanelIn 0.8s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes coverPanelIn {
+  from { transform: translateY(20px) scale(0.96); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.book-cover__title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 5rem);
+  margin: 8px 0 4px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+}
+.book-cover__sub { font-style: italic; color: var(--ink-soft); margin: 0 0 12px; font-size: 1.2rem; }
+
+.book-cover__progress {
+  margin: 24px 0;
+  font-family: var(--serif);
+}
+.book-cover__count { font-size: 1.6rem; color: var(--ink); }
+.book-cover__date { font-style: italic; color: var(--ink-soft); margin-top: 4px; min-height: 1.4em; }
+
+.book-cover__open { margin-top: 8px; }
+
+/* Opening animation: covers swing outward, center panel fades, content reveals */
+.book-cover.is-opening .book-cover__half--left  { transform: rotateY(-105deg); }
+.book-cover.is-opening .book-cover__half--right { transform: rotateY(105deg); }
+.book-cover.is-opening .book-cover__center {
+  animation: coverPanelOut 0.7s ease both;
+}
+@keyframes coverPanelOut {
+  to { transform: translateY(-20px) scale(0.92); opacity: 0; }
+}
+.book-cover.is-opening { background: rgba(40, 28, 14, 0); transition: background 1.1s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .book-cover__half, .book-cover__center, .book-cover { transition: none; animation: none; }
+}
+
 /* === Herbarium === */
 .herbarium {
   display: grid;

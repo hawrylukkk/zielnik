@@ -3,6 +3,7 @@
   const KEY_UNLOCKED = "zielnik.unlocked.v1";
   const KEY_STATS = "zielnik.stats.v1";
   const KEY_MUTED = "zielnik.muted.v1";
+  const KEY_FIRST_DISCOVERY = "zielnik.firstDiscovery.v1";
 
   function safeParse(raw, fallback) {
     try { return raw ? JSON.parse(raw) : fallback; }
@@ -25,7 +26,13 @@
       if (set.has(name)) return false;
       set.add(name);
       this.setUnlocked(set);
+      if (!localStorage.getItem(KEY_FIRST_DISCOVERY)) {
+        localStorage.setItem(KEY_FIRST_DISCOVERY, new Date().toISOString());
+      }
       return true;
+    },
+    getFirstDiscovery() {
+      return localStorage.getItem(KEY_FIRST_DISCOVERY) || null;
     },
 
     getStats() {
@@ -58,6 +65,9 @@
     resetAll() {
       localStorage.removeItem(KEY_UNLOCKED);
       localStorage.removeItem(KEY_STATS);
+      localStorage.removeItem(KEY_FIRST_DISCOVERY);
+      localStorage.removeItem("zielnik.achievements.v1");
+      localStorage.removeItem("zielnik.stamps.v1");
     },
   };
 

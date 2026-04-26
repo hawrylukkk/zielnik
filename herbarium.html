@@ -16,6 +16,33 @@
 <body class="page-herbarium">
   <div class="parchment-bg"></div>
 
+  <div id="bookCover" class="book-cover" role="dialog" aria-label="Okładka zielnika" tabindex="-1">
+    <div class="book-cover__half book-cover__half--left">
+      <div class="book-cover__inner book-cover__inner--left">
+        <div class="ornament">✦ ❦ ✦</div>
+      </div>
+    </div>
+    <div class="book-cover__half book-cover__half--right">
+      <div class="book-cover__inner book-cover__inner--right">
+        <div class="ornament">✦ ❦ ✦</div>
+      </div>
+    </div>
+    <div class="book-cover__center">
+      <div class="ornament">✦ ❦ ✦</div>
+      <h1 class="book-cover__title">Zielnik</h1>
+      <p class="book-cover__sub"><em>Herbarium Memoriae</em></p>
+      <div class="ornament">— księga odkrytych kwiatów —</div>
+      <div class="book-cover__progress">
+        <div class="book-cover__count" id="coverCount">0 / 94</div>
+        <div class="book-cover__date" id="coverDate"></div>
+      </div>
+      <button class="btn btn--primary book-cover__open" id="openBookBtn" type="button">
+        <span class="btn__title">Otwórz księgę</span>
+        <span class="btn__sub">Kliknij, aby przewrócić okładkę</span>
+      </button>
+    </div>
+  </div>
+
   <header class="topbar">
     <a class="topbar__back" href="index.html" aria-label="Powrót do menu">← Menu</a>
     <h1 class="topbar__title">Zielnik</h1>
@@ -45,7 +72,7 @@
         </label>
       </div>
       <ul id="flowerList" class="flower-list" role="listbox"></ul>
-      <button id="openStamps" class="link-btn stamps-trigger" type="button">🏅 Zobacz pieczątki</button>
+      <button id="openStamps" class="link-btn stamps-trigger" type="button">🏅 STEMPLE</button>
     </aside>
 
     <section id="detail" class="herbarium__detail" aria-live="polite">
@@ -59,8 +86,8 @@
   <div id="stampsDialog" class="dialog" hidden>
     <div class="dialog__panel dialog__panel--wide">
       <div class="ornament">✦ ❦ ✦</div>
-      <h2>Pieczątki w zielniku</h2>
-      <p class="dialog__lead">Zdobywaj je grając w memo i kompletując kolekcje.</p>
+      <h2>STEMPLE</h2>
+      <p class="dialog__lead" id="stampsLead">Zdobywaj je za odkrywanie kwiatów, szybkie pary i kompletowanie zestawów.</p>
       <div id="stampsGrid" class="stamps-grid"></div>
       <div class="dialog__actions">
         <button class="btn" id="closeStamps" type="button">Zamknij</button>
@@ -72,6 +99,7 @@
   <script src="js/data.js"></script>
   <script src="js/achievements.js"></script>
   <script src="js/herbarium.js"></script>
+  <script src="js/tutorial.js"></script>
   <script src="js/pwa.js"></script>
 </body>
 </html>

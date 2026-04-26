@@ -45,26 +45,19 @@ python3 -m http.server 8000
 ├── index.html          # menu główne
 ├── game.html           # gra memo
 ├── herbarium.html      # zielnik (Pokédex)
-├── css/                # style
-├── js/                 # logika
-├── data/flowers.json   # baza 94 kwiatów (z flowers.xml)
-├── assets/
-│   ├── images/         # zdjęcia kwiatów + back.png (rewers karty)
-│   └── audio/          # WAV-y (combo / cheers / start / exit)
-├── tools/xml_to_json.py  # jednorazowa konwersja XML → JSON
-└── ASSETS/, AUDIO/     # oryginalne źródła (zostawione dla referencji)
+├── css/                # style wspólne, gra, zielnik
+├── js/                 # logika aplikacji
+├── data/flowers.json   # baza 94 kwiatów
+├── images/             # zdjęcia kwiatów, rewers karty, ikony PWA, przewodnik
+└── audio/              # muzyka i efekty dźwiękowe
 ```
 
 ## 🔄 Aktualizacja danych
 
-Jeżeli zmienisz `ASSETS/flowers.xml`, regeneruj JSON:
-
-```bash
-python3 tools/xml_to_json.py
-```
+Dane kwiatów są zapisane bezpośrednio w `data/flowers.json`. Po zmianie nazw plików sprawdź, czy odpowiadają im pliki w `images/`.
 
 ## 📜 Licencja
 
 MIT — patrz [LICENSE](LICENSE).
 
-Zdjęcia kwiatów pochodzą z artykułu [bouqs.com](https://bouqs.com/blog/types-of-flowers-annual-perennial-biennial/) (źródło wskazane w `flowers.xml`).
+Zdjęcia kwiatów pochodzą z artykułu [bouqs.com](https://bouqs.com/blog/types-of-flowers-annual-perennial-biennial/).

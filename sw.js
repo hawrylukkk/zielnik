@@ -1,6 +1,6 @@
 /* Service worker — Zielnik (offline-first cache) */
-const VERSION = "zielnik-v2";
-const CORE = [
+const VERSION = "zielnik-v6";
+const REQUIRED_ASSETS = [
   "./",
   "index.html",
   "game.html",
@@ -19,14 +19,31 @@ const CORE = [
   "data/flowers.json",
   "manifest.webmanifest",
   "images/back.png",
-  "audio/music.mp3",
+];
+const OPTIONAL_ASSETS = [
   "images/icon-192.png",
   "images/icon-512.png",
 ];
 
+function cacheOptionalAssets(cache) {
+  return Promise.allSettled(OPTIONAL_ASSETS.map((url) => cache.add(url)))
+    .then((results) => {
+      results.forEach((result, index) => {
+        if (result.status === "rejected") {
+          console.warn("Optional cache asset failed:", OPTIONAL_ASSETS[index], result.reason);
+        }
+      });
+    });
+}
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(VERSION).then((cache) => cache.addAll(CORE)).catch(() => {})
+    caches.open(VERSION)
+      .then((cache) => cache.addAll(REQUIRED_ASSETS).then(() => cacheOptionalAssets(cache)))
+      .catch((err) => {
+        console.error("Service worker install failed:", err);
+        throw err;
+      })
   );
   self.skipWaiting();
 });

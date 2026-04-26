@@ -1,6 +1,39 @@
 /* Herbarium / Pokédex */
 (async function () {
   const flowers = await ZielnikData.load();
+
+  // Book cover intro
+  const cover = document.getElementById("bookCover");
+  if (cover) {
+    const coverCount = document.getElementById("coverCount");
+    const coverDate = document.getElementById("coverDate");
+    const openBookBtn = document.getElementById("openBookBtn");
+    const totalCount = flowers.length || 94;
+    const unlockedCount = ZielnikStorage.getUnlocked().size;
+    coverCount.textContent = `${unlockedCount} / ${totalCount} odkrytych`;
+    const firstISO = ZielnikStorage.getFirstDiscovery();
+    if (firstISO) {
+      try {
+        const d = new Date(firstISO);
+        coverDate.textContent = "Pierwszy kwiat odkryty: " +
+          d.toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" });
+      } catch { coverDate.textContent = ""; }
+    } else {
+      coverDate.textContent = "Tu zapisze się data Twojego pierwszego odkrycia.";
+    }
+    function openBook() {
+      if (cover.classList.contains("is-opening")) return;
+      cover.classList.add("is-opening");
+      setTimeout(() => { cover.hidden = true; }, 1200);
+    }
+    openBookBtn.addEventListener("click", openBook);
+    cover.addEventListener("click", (e) => { if (e.target === cover) openBook(); });
+    cover.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openBook(); }
+    });
+    cover.focus();
+  }
+
   const listEl = document.getElementById("flowerList");
   const detailEl = document.getElementById("detail");
   const progressLabel = document.getElementById("progressLabel");
@@ -128,14 +161,16 @@
   });
 
   // Re-check achievements when entering herbarium (covers collection-based ones)
-  if (window.ZielnikAchievements) {
-    ZielnikAchievements.check({ flowers, unlocked: ZielnikStorage.getUnlocked(), rounds: null });
+  if (window.ZielnikStemple) {
+    ZielnikStemple.check({ flowers, unlocked: ZielnikStorage.getUnlocked(), round: null });
   }
 
-  // Stamps dialog
+  // STEMPLE dialog
   const stampsDialog = document.getElementById("stampsDialog");
   const stampsGrid = document.getElementById("stampsGrid");
-  document.getElementById("openStamps").addEventListener("click", () => {
+  const stampsLead = document.getElementById("stampsLead");
+  const openStamps = document.getElementById("openStamps");
+  openStamps.addEventListener("click", () => {
     renderStamps();
     stampsDialog.hidden = false;
   });
@@ -143,20 +178,42 @@
   stampsDialog.addEventListener("click", (e) => { if (e.target === stampsDialog) stampsDialog.hidden = true; });
 
   function renderStamps() {
-    if (!window.ZielnikAchievements) return;
-    const earned = ZielnikAchievements.getEarned();
-    const all = ZielnikAchievements.getAll();
-    stampsGrid.innerHTML = all.map((a) => {
-      const got = earned.has(a.id);
-      return `
-        <div class="stamp-card ${got ? "is-earned" : "is-locked"}">
-          <div class="stamp-card__icon">${got ? a.icon : "🔒"}</div>
-          <div class="stamp-card__name">${escapeHtml(a.name)}</div>
-          <div class="stamp-card__desc">${escapeHtml(a.description)}</div>
+    if (!window.ZielnikStemple) return;
+    const earned = ZielnikStemple.getEarned();
+    const all = ZielnikStemple.getAll();
+    const grouped = all.reduce((acc, stamp) => {
+      const group = stamp.group || "Inne";
+      if (!acc[group]) acc[group] = [];
+      acc[group].push(stamp);
+      return acc;
+    }, {});
+
+    stampsLead.textContent = `Zdobyte stemple: ${earned.size} / ${all.length}`;
+    stampsGrid.innerHTML = Object.keys(grouped).map((group) => `
+      <section class="stamp-section">
+        <h3 class="stamp-section__title">${escapeHtml(group)}</h3>
+        <div class="stamp-section__grid">
+          ${grouped[group].map((a) => {
+            const got = earned.has(a.id);
+            return `
+              <div class="stamp-card ${got ? "is-earned" : "is-locked"}">
+                <div class="stamp-card__icon">${got ? a.icon : "🔒"}</div>
+                <div class="stamp-card__name">${escapeHtml(a.name)}</div>
+                <div class="stamp-card__desc">${escapeHtml(a.description)}</div>
+              </div>
+            `;
+          }).join("")}
         </div>
-      `;
-    }).join("");
+      </section>
+    `).join("");
+  }
+
+  function syncStampsButton() {
+    if (!window.ZielnikStemple) return;
+    const p = ZielnikStemple.getProgress();
+    openStamps.textContent = `🏅 STEMPLE ${p.earned}/${p.total}`;
   }
 
   render();
+  syncStampsButton();
 })();

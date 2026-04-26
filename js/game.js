@@ -63,6 +63,9 @@
       comboLevel: 0,
       newUnlockNames: [],
       newUnlockCards: [],
+      pairTimes: [],
+      pairIntervals: [],
+      lastPairAtSec: 0,
     };
 
     deck.forEach((entry) => {
@@ -105,6 +108,7 @@
     if (state.first.entry.pairId === state.second.entry.pairId) {
       state.first.card.classList.add("is-matched");
       state.second.card.classList.add("is-matched");
+      recordPairTiming();
       onMatched(state.second.entry.flower);
       state.first = null;
       state.second = null;
@@ -142,6 +146,13 @@
 
     updateHerbCount();
     showToast(flower);
+  }
+
+  function recordPairTiming() {
+    const now = elapsedSec();
+    state.pairTimes.push(now);
+    state.pairIntervals.push(now - state.lastPairAtSec);
+    state.lastPairAtSec = now;
   }
 
   function updateHerbCount() {
@@ -235,12 +246,21 @@
     clearInterval(state.timerId);
     ZielnikStorage.recordGame({ timeSec: t, moves: state.moves, newUnlocks: state.newUnlocks });
 
-    // Check achievements (returns newly earned)
-    const newAchievements = ZielnikAchievements
-      ? ZielnikAchievements.check({
+    // Check STEMPLE (returns newly earned)
+    const newStamps = window.ZielnikStemple
+      ? ZielnikStemple.check({
           flowers,
           unlocked: ZielnikStorage.getUnlocked(),
-          rounds: { timeSec: t, moves: state.moves, pairs: PAIRS, newUnlocks: state.newUnlocks },
+          round: {
+            completed: true,
+            timeSec: t,
+            moves: state.moves,
+            pairs: PAIRS,
+            newUnlocks: state.newUnlocks,
+            pairTimes: state.pairTimes.slice(),
+            pairIntervals: state.pairIntervals.slice(),
+            firstPairSec: state.pairTimes[0] ?? null,
+          },
         })
       : [];
 
@@ -255,10 +275,10 @@
       : "Wszystkie pary były już znane — wspaniała pamięć!";
 
     const achEl = document.getElementById("winAchievements");
-    if (newAchievements.length) {
+    if (newStamps.length) {
       achEl.hidden = false;
-      achEl.innerHTML = `<div class="ornament">— nowe pieczątki —</div>` +
-        newAchievements.map((a) =>
+      achEl.innerHTML = `<div class="ornament">— nowe stemple —</div>` +
+        newStamps.map((a) =>
           `<div class="achievement-pill"><span class="achievement-pill__icon">${a.icon}</span><div><div class="achievement-pill__name">${a.name}</div><div class="achievement-pill__desc">${a.description}</div></div></div>`
         ).join("");
     } else {
@@ -287,7 +307,7 @@
     muteBtn.setAttribute("aria-pressed", m ? "true" : "false");
   }
   syncMute();
-  muteBtn.addEventListener("click", () => { ZielnikStorage.setMuted(!ZielnikStorage.getMuted()); syncMute(); });
+  muteBtn.addEventListener("click", () => { ZielnikAudio.setMuted(!ZielnikStorage.getMuted()); syncMute(); });
 
   // Play again
   document.getElementById("playAgain").addEventListener("click", () => {

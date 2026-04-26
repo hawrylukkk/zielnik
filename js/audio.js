@@ -61,7 +61,6 @@
   const Music = (function () {
     let el = null;
     let started = false;
-    let wantPlaying = true;
     const VOL = 0.18;
 
     function ensure() {
@@ -69,7 +68,7 @@
       el = new Audio(BASE + "music.mp3");
       el.loop = true;
       el.volume = VOL;
-      el.preload = "auto";
+      el.preload = "none";
       return el;
     }
     function start() {
@@ -85,22 +84,19 @@
       el.play().then(() => { started = true; }).catch(() => {});
     }
 
-    // Try once on load (will likely fail — Chrome blocks), then on first user gesture.
-    document.addEventListener("DOMContentLoaded", () => {
-      ensure();
+    // Create and start music only after a user gesture.
+    const onGesture = (event) => {
+      if (event.target && event.target.closest && event.target.closest("#muteToggle")) return;
       start();
-    });
-    const onGesture = () => {
-      if (wantPlaying) start();
-      // keep listener until music actually starts
+      // Keep listener until music actually starts.
       if (started) {
         ["click", "keydown", "touchstart", "pointerdown"].forEach((e) =>
-          window.removeEventListener(e, onGesture, true)
+          window.removeEventListener(e, onGesture)
         );
       }
     };
     ["click", "keydown", "touchstart", "pointerdown"].forEach((e) =>
-      window.addEventListener(e, onGesture, true)
+      window.addEventListener(e, onGesture)
     );
 
     return { start, pause, resume };
