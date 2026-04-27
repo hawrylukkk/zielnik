@@ -147,15 +147,14 @@
       <div class="tutorial-highlight" hidden></div>
       <div class="tutorial-paszczak tutorial-druid">
         <img class="tutorial-paszczak__img tutorial-druid__img" id="tutGuideImg" src="${DRUID.normal}" alt="Koźlak Druid" />
-      </div>
-      <div class="tutorial-bubble" role="dialog" aria-live="polite">
-        <button class="tutorial-skip" type="button" aria-label="Pomiń tutorial">Pomiń tutorial</button>
-        <div class="tutorial-bubble__speaker">Koźlak Druid</div>
-        <div class="tutorial-bubble__text" id="tutText"></div>
-        <div class="tutorial-bubble__nav">
-          <button class="tutorial-btn tutorial-btn--ghost" id="tutBack" type="button">← Wstecz</button>
-          <span class="tutorial-bubble__progress" id="tutProgress"></span>
-          <button class="tutorial-btn" id="tutNext" type="button">Dalej →</button>
+        <div class="tutorial-bubble" role="dialog" aria-live="polite">
+          <button class="tutorial-skip" type="button" aria-label="Pomiń tutorial">Pomiń tutorial</button>
+          <div class="tutorial-bubble__text" id="tutText"></div>
+          <div class="tutorial-bubble__nav">
+            <button class="tutorial-btn tutorial-btn--ghost" id="tutBack" type="button">← Wstecz</button>
+            <span class="tutorial-bubble__progress" id="tutProgress"></span>
+            <button class="tutorial-btn" id="tutNext" type="button">Dalej →</button>
+          </div>
         </div>
       </div>
     `;

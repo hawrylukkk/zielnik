@@ -384,11 +384,12 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
 
 .tutorial-paszczak {
   position: absolute;
-  top: clamp(8px, 2vh, 24px);
+  top: 50%;
   left: 50%;
-  translate: -50% 0;
-  width: min(78vw, 620px);
-  height: min(52vh, 520px);
+  translate: -50% -50%;
+  width: min(96vw, 760px, 96vh);
+  aspect-ratio: 1 / 1;
+  height: auto;
   pointer-events: none;
   animation: paszczakIn 0.6s cubic-bezier(.2,.8,.2,1) both;
   filter: drop-shadow(0 16px 22px rgba(40,28,14,0.45));
@@ -398,9 +399,12 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
   to   { transform: translateY(0) scale(1); opacity: 1; }
 }
 .tutorial-paszczak__img {
-  width: 100%; height: 100%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center center;
   border-radius: 0;
   border: none;
   background: transparent;
@@ -420,18 +424,22 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
 
 .tutorial-bubble {
   position: absolute;
-  left: 50%;
-  bottom: clamp(14px, 3vh, 30px);
-  translate: -50% 0;
-  width: min(760px, calc(100vw - 32px));
+  left: 9.8%;
+  top: 73.4%;
+  width: 81.6%;
+  height: 18.2%;
+  translate: none;
   max-width: none;
-  background: linear-gradient(180deg, #faf1d9, #ecdcb1);
-  border: 1px solid rgba(90, 70, 40, 0.5);
-  border-radius: 14px;
-  padding: 18px 22px 14px;
-  box-shadow: var(--shadow-lg);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: clamp(8px, 1.3vw, 14px) clamp(12px, 1.8vw, 18px) clamp(8px, 1.1vw, 12px);
+  box-shadow: none;
   pointer-events: auto;
   animation: bubbleIn 0.5s cubic-bezier(.2,.8,.2,1) both;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .tutorial-bubble::before {
   display: none;
@@ -441,82 +449,86 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: 0.01em
   to   { transform: translateY(0) scale(1); opacity: 1; }
 }
 .tutorial-bubble__text {
-  font-size: 1.05rem;
-  line-height: 1.5;
-  color: var(--ink);
-  margin-bottom: 12px;
-  max-height: min(34vh, 300px);
+  flex: 1 1 auto;
+  min-height: 0;
+  font-size: clamp(1.15rem, 2.15vw, 1.55rem);
+  line-height: 1.22;
+  color: #efe3c1;
+  text-shadow: 0 2px 2px rgba(0,0,0,0.75), 0 0 5px rgba(0,0,0,0.65);
+  margin-bottom: 4px;
+  max-height: none;
   overflow-y: auto;
   padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(239, 227, 193, 0.45) transparent;
 }
-.tutorial-bubble__text p { margin: 0 0 0.65em; }
+.tutorial-bubble__text p { margin: 0 0 0.34em; }
 .tutorial-bubble__text p:last-child { margin-bottom: 0; }
-.tutorial-bubble__text em { font-style: italic; color: var(--moss-dark); }
-.tutorial-bubble__text strong { color: var(--terracotta); }
-.tutorial-bubble__speaker {
-  font-family: var(--serif);
-  font-size: 1.08rem;
-  font-weight: 600;
-  color: var(--moss-dark);
-  margin: 0 72px 8px 0;
-  letter-spacing: 0.03em;
-}
+.tutorial-bubble__text em { font-style: italic; color: #f4eacb; }
+.tutorial-bubble__text strong { color: #ffd9b0; }
 .tutorial-bubble__nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  flex: 0 0 auto;
 }
 .tutorial-bubble__progress {
   font-family: var(--serif);
-  color: var(--ink-faint);
-  font-size: 0.9rem;
+  color: rgba(239, 227, 193, 0.82);
+  font-size: clamp(0.82rem, 1.3vw, 1rem);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
 .tutorial-btn {
-  background: linear-gradient(180deg, #c8d49b, #98a86a);
-  color: #2a3517;
-  border: 1px solid rgba(40, 60, 20, 0.5);
+  background: rgba(239, 227, 193, 0.12);
+  color: #efe3c1;
+  border: 1px solid rgba(239, 227, 193, 0.45);
   border-radius: 6px;
-  padding: 6px 14px;
+  padding: 4px 12px;
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.35vw, 1.05rem);
   cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), 0 1px 4px rgba(0,0,0,0.35);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
 }
 .tutorial-btn:hover { filter: brightness(1.05); }
 .tutorial-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 .tutorial-btn--ghost {
-  background: transparent;
-  color: var(--ink-soft);
-  border: 1px solid rgba(90,70,40,0.3);
+  background: rgba(0,0,0,0.1);
+  color: rgba(239, 227, 193, 0.82);
+  border: 1px solid rgba(239, 227, 193, 0.28);
   box-shadow: none;
 }
 .tutorial-skip {
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: -26px;
+  right: 4px;
   background: none;
   border: none;
-  color: var(--ink-faint);
+  color: rgba(239, 227, 193, 0.82);
   font-family: var(--serif-body);
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   cursor: pointer;
   text-decoration: underline;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.75);
 }
-.tutorial-skip:hover { color: var(--terracotta); }
+.tutorial-skip:hover { color: #fff4d8; }
 
 @media (max-width: 600px) {
   .tutorial-paszczak {
-    top: 8px;
-    width: min(96vw, 430px);
-    height: 44vh;
+    width: min(122vw, 520px, 96vh);
   }
   .tutorial-bubble {
-    width: calc(100vw - 20px);
-    bottom: 10px;
-    padding: 16px 16px 12px;
+    left: 9.5%;
+    top: 73.5%;
+    width: 82%;
+    height: 18%;
+    padding: 6px 9px 7px;
   }
-  .tutorial-bubble__text { max-height: 35vh; }
+  .tutorial-bubble__text { font-size: clamp(0.9rem, 4.2vw, 1.08rem); line-height: 1.12; }
+  .tutorial-btn { padding: 3px 8px; font-size: 0.78rem; }
+  .tutorial-bubble__progress { font-size: 0.74rem; }
+  .tutorial-skip { top: -22px; font-size: 0.78rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
