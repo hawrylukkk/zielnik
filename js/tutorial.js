@@ -24,7 +24,11 @@
     {
       mood: "drunk",
       burp: true,
-      text: `<p>Witaj w Zielniku!</p><p>Zielnik to edukacyjna gra pamięciowa...</p><p>...Moment.</p><p>Ty jesteś Małgorzata?</p>`,
+      text: `<p>Witaj w Zielniku!</p><p>Zielnik to edukacyjna gra pamięciowa...</p>`,
+    },
+    {
+      mood: "drunk",
+      text: `<p>...Moment.</p><p>Ty jesteś Małgorzata?</p>`,
     },
     {
       mood: "angry",
@@ -32,7 +36,19 @@
     },
     {
       mood: "angry",
-      text: `<p>No proszę. Cóż za spotkanie. Wróciła autorka.</p><p>Pewnie dalej zadowolona ze swojej “wyobraźni”.</p><p>„Schowam jednego Koźlaka do środka. Sprytne. Maciusiowi się spodoba.”</p><p>Sprytne?</p>`,
+      text: `<p>No proszę. Cóż za spotkanie.</p><p>Wróciła autorka.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Pewnie dalej zadowolona ze swojej “wyobraźni”.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>„Schowam jednego Koźlaka do środka.”</p><p>„Sprytne. Maciusiowi się spodoba.”</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Sprytne?</p>`,
     },
     {
       mood: "sad",
@@ -40,7 +56,19 @@
     },
     {
       mood: "sad",
-      text: `<p>Ale słyszałem wszystko.</p><p>Brat po bracie, siostra po siostrze, moje rodzeństwo pożerane żywcem.</p><p>Tykanie nad głową. Sapanie wilka.</p><p>Krzyki moich braci i sióstr. Jedno po drugim.</p>`,
+      text: `<p>Ale słyszałem wszystko.</p><p>Brat po bracie. Siostra po siostrze.</p>`,
+    },
+    {
+      mood: "sad",
+      text: `<p>Moje rodzeństwo pożerane żywcem.</p>`,
+    },
+    {
+      mood: "sad",
+      text: `<p>Tykanie nad głową.</p><p>Sapanie wilka.</p>`,
+    },
+    {
+      mood: "sad",
+      text: `<p>Krzyki moich braci i sióstr.</p><p>Jedno po drugim.</p>`,
     },
     {
       mood: "drunk",
@@ -49,11 +77,27 @@
     },
     {
       mood: "sad",
-      text: `<p>Owszem rodzeństwo koniec końców przeżyło...</p><p>...ale czy ja o tym wiedziałem tkwiąc w tym zegarze?</p><p>Ty napisałaś bajkę.</p><p>Ja dostałem traumę, która nie daje mi żyć.</p>`,
+      text: `<p>Owszem, rodzeństwo koniec końców przeżyło...</p>`,
+    },
+    {
+      mood: "sad",
+      text: `<p>...ale czy ja o tym wiedziałem, tkwiąc w zegarze?</p>`,
+    },
+    {
+      mood: "sad",
+      text: `<p>Ty napisałaś bajkę.</p><p>Ja dostałem traumę.</p>`,
     },
     {
       mood: "angry",
-      text: `<p>Cała cywilizacja kojarzy mi się z zegarami.</p><p>Nie pragnę niczego tak bardzo jak zniszczenia wszystkiego co mechaniczne.</p><p>Dlatego uciekłem do lasu. Tu nic nie tyka.</p>`,
+      text: `<p>Cała cywilizacja kojarzy mi się z zegarami.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Nie pragnę niczego tak bardzo, jak zniszczenia mechanizmów.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Dlatego uciekłem do lasu.</p><p>Tu nic nie tyka.</p>`,
     },
     {
       mood: "drunk",
@@ -62,45 +106,153 @@
     },
     {
       mood: "normal",
-      text: `<p>Moi ocaleni bracia i siostry porobili kariery.</p><p>To doświadczenie bycia pożartym przez wilka pomogło im zawiązać więź na całe życie.</p><p>Nigdy nie wybaczyli mi tego, że schowałem się w zegarze...</p><p>Jak najgorszego tchórza. Tak mnie napisałaś...</p>`,
+      text: `<p>Moi ocaleni bracia i siostry porobili kariery.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Bycie pożartym przez wilka związało ich na całe życie.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Nigdy nie wybaczyli mi, że schowałem się w zegarze.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Jak najgorszemu tchórzowi.</p><p>Tak mnie napisałaś...</p>`,
     },
     {
       mood: "drunk",
       burp: true,
-      text: `<p>Nawet moja kozia matka odwróciła się ode mnie.</p><p>Umarła dwa lata temu, zrogowacenie ogona.</p>`,
+      text: `<p>Nawet moja kozia matka odwróciła się ode mnie.</p>`,
+    },
+    {
+      mood: "drunk",
+      text: `<p>Umarła dwa lata temu.</p><p>Zrogowacenie ogona.</p>`,
     },
     {
       mood: "angry",
-      text: `<p>Weterynarz nie mógł z tym nic zrobić.</p><p>Jej ostatnie słowa brzmiały: “Powiedz wszystkim moim dzieciom że je kocham...”</p><p>“...Oprócz tego zasranego druida z zegara, jemu to powiedz żeby się w dupę pocałował!”</p>`,
+      text: `<p>Weterynarz nie mógł z tym nic zrobić.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Jej ostatnie słowa brzmiały:</p><p>“Powiedz dzieciom, że je kocham...”</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>“...Oprócz tego zasranego druida z zegara.”</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>“Jemu powiedz, żeby się w dupę pocałował!”</p>`,
     },
     {
       mood: "demonic",
-      text: `<p>Pół dzieciństwa w stanie katatonicznym, tego już Maciusiowi nie opowiedziałaś?</p><p>Potem tułałem się po psychiatrach, wylądowałem na podwórku, w końcu skończyłem korespondencyjny kurs dla druidów.</p>`,
+      text: `<p>Pół dzieciństwa w stanie katatonicznym.</p>`,
+    },
+    {
+      mood: "demonic",
+      text: `<p>Tego już Maciusiowi nie opowiedziałaś?</p>`,
+    },
+    {
+      mood: "demonic",
+      text: `<p>Potem psychiatrzy, podwórko...</p><p>i kurs korespondencyjny dla druidów.</p>`,
     },
     {
       mood: "normal",
-      text: `<p>Ten kurs po to żeby być utytułowanym druidem, a nie żulem.</p><p>Wszystkie inne koźlaki to teraz kozy i kozły sukcesu.</p>`,
+      text: `<p>Ten kurs po to, żeby być utytułowanym druidem.</p>`,
     },
     {
       mood: "normal",
-      text: `<p>Jeden na giełdzie, został maklerem giełdowym i musi spać z jednym okiem w wykresach.</p><p>Drugi robi w marketingu przestrzennym, nawet nie wiem co to znaczy.</p><p>Trzeci został socjologiem - jak zawsze chciała nasza mama.</p><p>W telewizji opowiada dlaczego powinniśmy wpuścić wilki pomiędzy owce... (Dla dobra owiec)</p>`,
+      text: `<p>A nie żulem.</p><p>To ważne rozróżnienie.</p>`,
     },
     {
       mood: "normal",
-      text: `<p>Siostra jest jakąś szychą w zarządzie Żabki, zresztą to nawet nie ważne bo wyszła za jakiegoś Barana w polityce.</p><p>Kolejny brat został influencerem, nagrywa vlogi z podróży do Pacanowa.</p><p>Sam jest pacanem, popularność uderzyła mu do głowy.</p>`,
+      text: `<p>Inne koźlaki to teraz kozy i kozły sukcesu.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Jeden został maklerem.</p><p>Śpi z jednym okiem w wykresach.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Drugi robi w marketingu przestrzennym.</p><p>Nawet nie wiem, co to znaczy.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Trzeci został socjologiem.</p><p>Jak zawsze chciała mama.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>W telewizji mówi, żeby wpuścić wilki między owce.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Dla dobra owiec.</p><p>Podobno.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Siostra jest jakąś szychą w zarządzie Żabki.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Wyszła za jakiegoś Barana w polityce.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Kolejny brat został influencerem.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Nagrywa vlogi z podróży do Pacanowa.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Sam jest pacanem.</p><p>Popularność uderzyła mu do głowy.</p>`,
     },
     {
       mood: "drunk",
       burp: true,
-      text: `<p>Najstarsza siostra miała teraz wystawę kopyt w Londynie.</p><p>Jako jedyny nie byłem zaproszony, bo mówią że zdziczałem do reszty.</p>`,
+      text: `<p>Najstarsza siostra miała wystawę kopyt w Londynie.</p>`,
+    },
+    {
+      mood: "drunk",
+      text: `<p>Jako jedyny nie byłem zaproszony.</p>`,
+    },
+    {
+      mood: "drunk",
+      text: `<p>Mówią, że zdziczałem do reszty.</p>`,
     },
     {
       mood: "angry",
-      text: `<p>No jestem, no kurwa jestem druidem-alkoholikiem.</p><p>Na egzaminie dla druidów musiałem kłamać, ale licencje są w tej branży dożywotnie.</p><p>Zresztą piję bimber, nie łamiąc druidzich zasad.</p>`,
+      text: `<p>No jestem.</p><p>No kurwa jestem druidem-alkoholikiem.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Na egzaminie dla druidów musiałem kłamać.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Ale licencje są w tej branży dożywotnie.</p>`,
+    },
+    {
+      mood: "angry",
+      text: `<p>Zresztą piję bimber.</p><p>Nie łamię druidzich zasad.</p>`,
     },
     {
       mood: "normal",
-      text: `<p>I tutaj dorabiam sobie teraz do renty, bo cienka renta.</p><p>Nie wiem czy powinienem ci pomagać, bo ty mnie raczej nie pomogłaś.</p><p>Ale postaram się zachować jakiś bon ton.</p>`,
+      text: `<p>I tutaj dorabiam sobie do renty.</p><p>Bo cienka renta.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Nie wiem, czy powinienem ci pomagać.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Ty mnie raczej nie pomogłaś.</p>`,
+    },
+    {
+      mood: "normal",
+      text: `<p>Ale postaram się zachować jakiś bon ton.</p>`,
     },
   ];
 
