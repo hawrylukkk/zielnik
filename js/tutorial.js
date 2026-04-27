@@ -331,12 +331,15 @@
 
   function renderStep() {
     const step = currentSteps[idx];
+    const isIntroStep = includesIntro && idx < INTRO_STEPS.length;
     document.getElementById("tutText").innerHTML = step.text;
     document.getElementById("tutProgress").textContent = `${idx + 1} / ${currentSteps.length}`;
     document.getElementById("tutBack").disabled = idx === 0;
     document.getElementById("tutNext").textContent = idx === currentSteps.length - 1 ? "Zaczynamy!" : "Dalej →";
     guideImg.src = DRUID[step.mood || "normal"] || DRUID.normal;
     guideImg.alt = step.mood ? `Koźlak Druid (${step.mood})` : "Koźlak Druid";
+    root.classList.toggle("tutorial-root--intro", isIntroStep);
+    root.classList.toggle("tutorial-root--guide", !isIntroStep);
     root.classList.toggle("tutorial-root--demonic", step.mood === "demonic");
     root.classList.toggle("tutorial-root--sad", step.mood === "sad");
     positionHighlight();
